@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IC-POS: ckBTC Point of Sale</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>IC-POS: ckBTC Point of Sale</h1>
+        </header>
+        <main>
+            <section id="merchant-info">
+                <h2>Merchant Information</h2>
+                <div id="merchant-details"></div>
+                <button id="update-merchant">Update Merchant Info</button>
+            </section>
+            <section id="transaction-monitor">
+                <h2>Transaction Monitor</h2>
+                <div id="transaction-list"></div>
+            </section>
+            <section id="payment-processor">
+                <h2>Process Payment</h2>
+                <input type="number" id="payment-amount" placeholder="Amount in ckBTC">
+                <button id="generate-qr">Generate QR Code</button>
+                <div id="qr-code"></div>
+            </section>
+        </main>
+    </div>
+    <script type="module" src="index.js"></script>
+</body>
+</html>
