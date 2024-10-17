@@ -9,20 +9,54 @@ async function init() {
     authClient = await AuthClient.create();
     if (await authClient.isAuthenticated()) {
         handleAuthenticated();
-    } else {
-        await authClient.login({
-            identityProvider: "https://identity.ic0.app/#authorize",
-            onSuccess: handleAuthenticated
-        });
     }
+
+    const loginButton = document.getElementById('login-button');
+    loginButton.onclick = login;
+
+    const logoutButton = document.getElementById('logout-button');
+    logoutButton.onclick = logout;
+}
+
+async function login() {
+    await authClient.login({
+        identityProvider: "https://identity.ic0.app/#authorize",
+        onSuccess: handleAuthenticated
+    });
+}
+
+async function logout() {
+    await authClient.logout();
+    handleUnauthenticated();
 }
 
 async function handleAuthenticated() {
     principal = await authClient.getIdentity().getPrincipal();
+    document.getElementById('principal-id').textContent = `Principal ID: ${principal.toString()}`;
+    document.getElementById('login-button').style.display = 'none';
+    document.getElementById('logout-button').style.display = 'inline-block';
+    document.getElementById('merchant-info').style.display = 'block';
+    document.getElementById('transaction-monitor').style.display = 'block';
+    document.getElementById('payment-processor').style.display = 'block';
+
     document.getElementById('update-merchant').addEventListener('click', updateMerchant);
     document.getElementById('generate-qr').addEventListener('click', generateQRCode);
     await fetchMerchantInfo();
     startTransactionMonitor();
+}
+
+function handleUnauthenticated() {
+    principal = null;
+    document.getElementById('principal-id').textContent = '';
+    document.getElementById('login-button').style.display = 'inline-block';
+    document.getElementById('logout-button').style.display = 'none';
+    document.getElementById('merchant-info').style.display = 'none';
+    document.getElementById('transaction-monitor').style.display = 'none';
+    document.getElementById('payment-processor').style.display = 'none';
+
+    document.getElementById('merchant-details').innerHTML = '';
+    document.getElementById('transaction-list').innerHTML = '';
+    document.getElementById('qr-code').innerHTML = '';
 }
 
 async function fetchMerchantInfo() {

@@ -23,6 +23,16 @@ h1 {
     margin: 0;
 }
 
+#auth-section {
+    margin-top: 10px;
+}
+
+#principal-id {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.8em;
+}
+
 main {
     display: grid;
     grid-template-columns: 1fr 1fr;

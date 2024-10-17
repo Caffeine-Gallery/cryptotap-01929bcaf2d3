@@ -10,18 +10,23 @@
     <div id="app">
         <header>
             <h1>IC-POS: ckBTC Point of Sale</h1>
+            <div id="auth-section">
+                <button id="login-button">Login with Internet Identity</button>
+                <button id="logout-button" style="display: none;">Logout</button>
+                <span id="principal-id"></span>
+            </div>
         </header>
         <main>
-            <section id="merchant-info">
+            <section id="merchant-info" style="display: none;">
                 <h2>Merchant Information</h2>
                 <div id="merchant-details"></div>
                 <button id="update-merchant">Update Merchant Info</button>
             </section>
-            <section id="transaction-monitor">
+            <section id="transaction-monitor" style="display: none;">
                 <h2>Transaction Monitor</h2>
                 <div id="transaction-list"></div>
             </section>
-            <section id="payment-processor">
+            <section id="payment-processor" style="display: none;">
                 <h2>Process Payment</h2>
                 <input type="number" id="payment-amount" placeholder="Amount in ckBTC">
                 <button id="generate-qr">Generate QR Code</button>
